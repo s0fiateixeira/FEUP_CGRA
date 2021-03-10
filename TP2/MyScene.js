@@ -2,6 +2,7 @@ import { CGFscene, CGFcamera, CGFaxis } from "../lib/CGF.js";
 import { MyTangram } from "./MyTangram.js";
 import { MyUnitCube } from "./MyUnitCube.js";
 import { MyQuad } from "./MyQuad.js";
+import { MyUnitCubeQuad } from "./MyUnitCubeQuad.js";
 
 /**
  * MyScene
@@ -13,7 +14,6 @@ export class MyScene extends CGFscene {
   }
   init(application) {
     super.init(application);
-    
     this.initCameras();
     this.initLights();
 
@@ -30,6 +30,7 @@ export class MyScene extends CGFscene {
     this.tangram = new MyTangram(this);
     this.cube = new MyUnitCube(this);
     this.quad = new MyQuad(this);
+    this.cubequad = new MyUnitCubeQuad(this);
     
     //Objects connected to MyInterface
     this.displayAxis = true;
@@ -110,7 +111,7 @@ export class MyScene extends CGFscene {
     if (this.showTangram) this.tangram.display();
     this.popMatrix();
 
-    this.quad.display();
+    this.cubequad.display();
     
     // ---- END Primitive drawing section
   }
