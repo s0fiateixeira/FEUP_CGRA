@@ -12,36 +12,105 @@ export class MyUnitCube extends CGFobject {
 	
 	initBuffers() {
 		this.vertices = [
-			0.5, -0.5, 0.5,	    //0
-			0.5, -0.5, -0.5,    //1
-			-0.5, -0.5, -0.5,   //2
-            -0.5, -0.5, 0.5,    //3
-             0.5, 0.5, 0.5,     //4
-            0.5, 0.5, -0.5,     //5
-			-0.5, 0.5, -0.5,    //6
-            -0.5, 0.5, 0.5      //7
+			// face de cima
+			-0.5, 0.5, -0.5,
+			0.5, 0.5, -0.5,
+			0.5, 0.5, 0.5,
+			-0.5, 0.5, 0.5,
+
+			// face da esquerda
+			-0.5, 0.5, -0.5,
+			-0.5, 0.5, 0.5,
+			-0.5, -0.5, 0.5,
+			-0.5, -0.5, -0.5,
+
+			// face de baixo
+			-0.5, -0.5, 0.5,
+			0.5, -0.5, 0.5,
+			0.5, -0.5, -0.5,
+			-0.5, -0.5, -0.5,
+
+			// face da direita
+			0.5, 0.5, 0.5,
+			0.5, 0.5, -0.5,
+			0.5, -0.5, -0.5,
+			0.5, -0.5, 0.5,
+
+			// face da frente
+			-0.5, 0.5, 0.5,
+			0.5, 0.5, 0.5,
+			0.5, -0.5, 0.5,
+			-0.5, -0.5, 0.5,
+
+			// face de trás
+			0.5, 0.5, -0.5,
+			-0.5, 0.5, -0.5,
+			-0.5, -0.5, -0.5,
+			0.5, -0.5, -0.5
 		];
 
 		//Counter-clockwise reference of vertices
 		this.indices = [
-            0, 1, 4,
-            1, 5, 4,
-            1, 2, 5,
-            2, 6, 5,
-            6, 2, 7,
-            2, 3, 7,
-            3, 0, 7,
-            0, 4, 7,
-            6, 7, 4,
-            4, 5, 6,
+           	0, 2, 1,	// face de cima
             0, 3, 2,
-            2, 1, 0
+
+            4, 6, 5,	// face da esquerda
+            4, 7, 6,
+        
+			8, 10, 9,	// face de baixo
+            8, 11, 10,
+            
+			12, 14, 13,	// face da direita
+            12, 15, 14,
+            
+			16, 18, 17,	// face da frente
+            16, 19, 18,
+            
+			20, 22, 21,	// face de trás
+            20, 23, 22
         ];
 
-		//The defined indices (and corresponding vertices)
-		//will be read in groups of three to draw triangles
+		this.normals = [
+			// para a face de cima as normais são do tipo (0, 1, 0)
+			0, 1, 0,		
+			0, 1, 0,
+			0, 1, 0,
+			0, 1, 0,
+			// para a face da esquerda as normais são do tipo (-1, 0, 0)
+			-1, 0, 0,
+			-1, 0, 0,
+			-1, 0, 0,
+			-1, 0, 0,
+			// para a face de baixo as normais são do tipo (0, -1, 0)	
+			0, -1, 0,
+			0, -1, 0,
+			0, -1, 0,
+			0, -1, 0,	
+			// para a face da direita as normais são do tipo (1, 0, 0)	
+			1, 0, 0,
+			1, 0, 0,
+			1, 0, 0,
+			1, 0, 0,
+			// para a face da frente as normais são do tipo (0, 0, 1)
+			0, 0, 1,
+			0, 0, 1,
+			0, 0, 1,
+			0, 0, 1,
+			// para a face de trás as normais são do tipo (0, 0, -1)
+			0, 0, -1,
+			0, 0, -1,
+			0, 0, -1,
+			0, 0, -1
+		];
+		
 		this.primitiveType = this.scene.gl.TRIANGLES;
 
 		this.initGLBuffers();
 	}
+
+	updateBuffers(complexity){
+        // reinitialize buffers
+        this.initBuffers();
+        this.initNormalVizBuffers();
+    }
 }
