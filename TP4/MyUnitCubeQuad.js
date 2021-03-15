@@ -40,10 +40,12 @@ export class MyUnitCubeQuad {
     }
     display(){
 
+        this.sideTexture.apply();
+        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
+
         // face da frente
         this.scene.pushMatrix();
         this.scene.translate(0,0,0.5);
-        this.sideTexture.apply();
         this.MyQuad.display();
         this.scene.popMatrix();
 
@@ -51,23 +53,6 @@ export class MyUnitCubeQuad {
         this.scene.pushMatrix();
         this.scene.rotate(Math.PI,0,1,0);
         this.scene.translate(0,0,0.5);
-        this.sideTexture.apply();
-        this.MyQuad.display();
-        this.scene.popMatrix();
-
-        // face de cima
-        this.scene.pushMatrix();
-        this.scene.rotate(-Math.PI/2,1,0,0);
-        this.scene.translate(0,0,0.5);
-        this.topTexture.apply();
-        this.MyQuad.display();
-        this.scene.popMatrix();
-
-        // face de baixo
-        this.scene.pushMatrix();
-        this.scene.rotate(Math.PI/2,1,0,0);
-        this.scene.translate(0,0,0.5);
-        this.bottomTexture.apply();
         this.MyQuad.display();
         this.scene.popMatrix();
 
@@ -75,7 +60,6 @@ export class MyUnitCubeQuad {
         this.scene.pushMatrix();
         this.scene.rotate(Math.PI/2,0,1,0);
         this.scene.translate(0,0,0.5);
-        this.sideTexture.apply();
         this.MyQuad.display();
         this.scene.popMatrix();
 
@@ -83,7 +67,27 @@ export class MyUnitCubeQuad {
         this.scene.pushMatrix();
         this.scene.rotate(-Math.PI/2,0,1,0);
         this.scene.translate(0,0,0.5);
-        this.sideTexture.apply();
+        this.MyQuad.display();
+        this.scene.popMatrix();
+
+        // face de cima
+        this.topTexture.apply();
+        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
+
+        this.scene.pushMatrix();
+        this.scene.rotate(-Math.PI/2,1,0,0);
+        this.scene.translate(0,0,0.5);
+        this.MyQuad.display();
+        this.scene.popMatrix();
+
+
+        // face de baixo
+        this.bottomTexture.apply();
+        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
+
+        this.scene.pushMatrix();
+        this.scene.rotate(Math.PI/2,1,0,0);
+        this.scene.translate(0,0,0.5);
         this.MyQuad.display();
         this.scene.popMatrix();
     }
